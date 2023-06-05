@@ -10,11 +10,11 @@ func  macro
 	endif
 	  endm
 data segment
-    id  db  '2196114661'
-	;X  label  byte
-	;X   db  '14661'
-	X   db  '2196114661'
-	len equ ($-X)
+    id  db  '2213311115'
+	; X  label  byte
+	; X   db  '11115'
+	X   db  '2213311115'
+	len equ ($-X)		;len定义为当前地址到x1的长度值
 data ends
 code segment
     assume cs:code, ds:data
