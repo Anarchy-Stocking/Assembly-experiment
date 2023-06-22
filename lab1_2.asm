@@ -17,9 +17,6 @@ code segment
         mov   ax, data
         mov   ds, ax
         
-        ; TODO ...
-		; | add your code between arrows |
-		; v ---------------------------- v
         mov al, W
         sub al, X 
         cbw
@@ -30,8 +27,6 @@ code segment
         idiv ch 
         mov Z, al 
 
-        ; ^ ---------------------------- ^
-		; |          The END             |
         
         ; method 2: return to dos
         mov   ax, 4c00h
