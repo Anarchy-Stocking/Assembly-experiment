@@ -20,26 +20,26 @@ code segment
 		push ds
 		mov dx,offset inter
 		mov ax,seg inter	;计算段基址
-		mov ds,ax			
+		mov ds,ax			;把inter中断处理程序的地址mov到ds中
 		mov al,1ch			;AL = 中断类型号
 		mov ah,25h			;设置中断向量时预置AH=25H
 		int 21h				;执行
-		pop ds				;把ds pop到ds中
+		pop ds				;恢复ds段
 		;DS:DX=中断向量(程序入口地址)
 
 	input:
 		mov ah,01h
 		int 21h
-		cmp al,51h
+		cmp al,51h			;不满足退出条件(al = 51h)则一直输入
 		jnz input
 		
 		;回车换行
-		mov dl,0dh
-		mov ah,2
-		int 21h
-		mov dl,0ah
-		mov ah,2
-		int 21h
+		mov dl,0dh			;将ASCII码为0x0D的字符（即回车符）存储到dl寄存器中。
+		mov ah,2			;将2存储到ah寄存器中，用于调用DOS中的21h中断。
+		int 21h				;调用DOS中的21h中断，这里是将dl寄存器中的字符输出到屏幕上。
+		mov dl,0ah			;将ASCII码为0x0A的字符（即换行符）存储到dl寄存器中。
+		mov ah,2			;同上
+		int 21h				;同上
 		
 		mov bx,num
 		mov ch,4
